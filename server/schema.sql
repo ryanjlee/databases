@@ -1,3 +1,4 @@
+DROP DATABASE chat;
 CREATE DATABASE chat;
 
 USE chat;
@@ -6,14 +7,14 @@ USE chat;
 CREATE TABLE users (
   /* Describe your table here.*/
   id int(11) NOT NULL auto_increment,
-  name VARCHAR(255),
+  name VARCHAR(255) UNIQUE,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE rooms (
   /* Describe your table here.*/
   id int(11) NOT NULL auto_increment,
-  name VARCHAR(255),
+  name VARCHAR(255) UNIQUE,
   PRIMARY KEY (id)
 );
 
@@ -24,7 +25,7 @@ CREATE TABLE messages (
   user_id int(11),
   room_id int(11),
   PRIMARY KEY (id),
-  FOREIGN KEY (room_id) REFERENCES rooms(id)
+  FOREIGN KEY (room_id) REFERENCES rooms(id),
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
